@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class bender {
+    public static void main(String[] args) {
+        String credit = JOptionPane.showInputDialog("¬веди сумму кредита (руб.):");
+        String procents = JOptionPane.showInputDialog("¬веди процентную ставку:");
+        String srokcredit = JOptionPane.showInputDialog("¬веди на какой срок беретс€ кредит (мес.):");
+        double proc = 0;
+        double vkl = Double.parseDouble(credit);
+        //сумма кредита
+        double procent = Double.parseDouble(procents);
+        //годова€ ставка
+        double curc = procent / 12;
+        //процентна€ ставка в мес€ц
+        double a = Double.parseDouble(srokcredit);
+        //кол-во мес€цев
+        int b = 1;
+        //начало отчета (1 мес€ц)
+
+        double ss = (1 + curc);
+        double result = Math.pow(ss, a);
+        //представление формулы возведени€ в степень (1+curc)^a
+        double vznoz = vkl * curc / (1 - 1 / result);
+        //сумма взноса в мес€ц
+        double vznz = 0;
+        double vzx = vznoz * a - vkl;
+        for (b = 1; b <= a; b++) {
+            proc = vkl * curc;
+            //процент по кредиту в мес€ц
+            vznz = vznoz - proc;
+            //часть кредитно суммы дл€ погашени€
+            vkl = vkl - vznz;
+            //остаточна€ часть кредита на конец мес€ца
+            System.out.println(b + " мес€ц" + "\t" + vznoz + "\t" + proc +"\t" + vznz + "\t" + vkl);
+        }
+        {
+            System.out.println("»того переплата за  " + a/12 + " лет (года) составила:   " + vzx);
+        }
+    }
+}
